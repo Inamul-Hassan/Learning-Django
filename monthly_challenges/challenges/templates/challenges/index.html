@@ -5,5 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monthly Challenges</title>
   </head>
-  <body></body>
+  <body>
+    <ul>
+      {% for month in months%}
+      <li><a href="{% url "monthly-challenges" month %}">{{month|title}}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
 </html>

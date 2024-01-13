@@ -44,14 +44,15 @@ challenges_text: Dict = {
 
 
 def index(request: Any) -> Any:
-    list_items: str = ""
+    # list_items: str = ""
     months: List = list(challenges_text.keys())
 
-    for month in months:
-        capitalized_month: str = month.capitalize()
-        month_path: str = reverse("monthly-challenges", args=[month])
-        list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
-    return HttpResponse(f"<ul>{list_items}</ul>")
+    # for month in months:
+    #     capitalized_month: str = month.capitalize()
+    #     month_path: str = reverse("monthly-challenges", args=[month])
+    #     list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
+    # return HttpResponse(f"<ul>{list_items}</ul>")
+    return render(request, 'challenges/index.html', {'months': months})
 
 
 def monthly_challenges_by_number(request: Any, month: int) -> Any:
