@@ -1,11 +1,16 @@
 {% extends "base.html" %} 
+{% load static %}
 
 {% block title_block %} 
 {{month_text|title}}Challenges
 {% endblock title_block %} 
 
+{% block style_block %}
+<link rel='stylesheet' href="{% static "challenges\challenge.css" %}">
+{% endblock style_block %}
+
 {% block bocy_content_block %}
 {% include "challenges\includes\header.html" %}
 <h1>Checkpoints For The Month {{month_text|title}} Is:</h1>
-<h3>{{challenge_text}}</h3>
+<h2>{{challenge_text}}</h2>
 {% endblock bocy_content_block %}

@@ -39,7 +39,8 @@ challenges_text: Dict = {
     'febuary': "Built A Real World Project with Django & AI(RAG)",
     'march': "Refresh AI/ML Concepts and Start Taking Interviews",
     'april': "Resign PwC",
-    'may': "Start At New Job"
+    'may': "Start At New Job",
+    'june': "Trip to Goa"
 }
 
 
@@ -58,7 +59,8 @@ def index(request: Any) -> Any:
 def monthly_challenges_by_number(request: Any, month: int) -> Any:
     months: List = list(challenges_text.keys())
     if month > len(months) or month <= 0:
-        return HttpResponseNotFound("Invalid Month")
+        rendered_content = render_to_string('404.html')
+        return HttpResponseNotFound(rendered_content)
     else:
         redirect_month = months[month-1]
         # reverse() -> to derive the actual path/route from name of the route
@@ -78,4 +80,5 @@ def monthly_challenges(request: Any, month: str) -> Any:
         return render(request, 'challenges/challenge.html', {'challenge_text': render_data, 'month_text': month})
         # return HttpResponse(render_data)
     except:
-        return HttpResponseNotFound("Invalid Month")
+        rendered_content = render_to_string('404.html')
+        return HttpResponseNotFound(rendered_content)

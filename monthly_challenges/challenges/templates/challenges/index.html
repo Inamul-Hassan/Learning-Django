@@ -1,8 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title_block %} 
 Monthly Challenges
 {% endblock title_block %}
+
+{% block style_block %}
+<link rel='stylesheet' href="{% static "challenges\challenges.css" %}">
+{% endblock style_block %}
+
+
+
 
 {% block bocy_content_block %}
 {% include "challenges\includes\header.html" %}

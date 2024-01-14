@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title_block %}Title{% endblock title_block %}</title>
+    <link rel='stylesheet' href="{% static "styles.css" %}">
+    {% block style_block %}{% endblock style_block %}
   </head>
   <body>
     {% block bocy_content_block %}
