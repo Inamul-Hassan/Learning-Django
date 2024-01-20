@@ -7,17 +7,12 @@ My Blog
 {% endblock %} 
 
 {% block style_block %}
+  <link rel="stylesheet" href="{% static "blog/includes/post.css" %}" />
   <link rel="stylesheet" href="{% static "blog/index.css" %}" />
 {% endblock %}
 
 {% block body_content_block %}
 
-<header id="main-navigation">
-  <h1><a href="">Hassan's Blog</a></h1>
-  <nav>
-    <a href="">All Posts</a>
-  </nav>  
-</header>
 
 <section id="welcome">
   <header>
@@ -31,21 +26,10 @@ My Blog
   <h2>My Latest Thoughts</h2>
 
   <ul>
-    <li>
-      <article class="post">
-        <a href="">
-          <img src="" alt="Mountain Hiking" />
-          <div class="post__content">
-            <h3>Mountain Hiking</h3>
-            <p>
-              There's nothing like the views you get when hiking in the
-              mountains! And I wasn't even prepared for what happened whilst I
-              was enjoying the view!
-            </p>
-          </div>
-        </a>
-      </article>
-    </li>
+    {% for post in all_posts %}
+    {% include "blog/includes/post.html" %}    
+    {% endfor %}
+    
   </ul>
 </section>
 
