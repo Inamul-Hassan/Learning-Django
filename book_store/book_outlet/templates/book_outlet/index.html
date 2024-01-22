@@ -6,7 +6,9 @@ All Pages
 
 {% block body_content_block %}
 <ul>
-<li> Book 1 ...</li>
+  {% for book in books %}
+  <li>{{book.title}} ({{book.rating}}) </li>
+  {% endfor %}
 </ul>  
 {% endblock body_content_block %}
 
