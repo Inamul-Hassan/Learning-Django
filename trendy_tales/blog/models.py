@@ -17,6 +17,14 @@ class Author(models.Model):
     email = models.EmailField(null=False)
 
     def __str__(self) -> str:
+        """
+        Return a string representation of a Person object
+        Args:
+            self: The Person object
+        Returns:
+            str: A string with the first and last name
+        - Concatenate the first and last name attributes with a space in between
+        - Return the concatenated string"""
         return f"{self.first_name} {self.last_name}"
 
 
@@ -25,10 +33,13 @@ class Posts(models.Model):
     slug = models.SlugField(default="", null=False, db_index=True, unique=True)
     excert = models.CharField(max_length=200)
     content = models.TextField(validators=[MinLengthValidator(10)])
-    date_added = models.DateField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
     image_name = models.CharField(max_length=100)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=False)
+    author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = "Posts"
