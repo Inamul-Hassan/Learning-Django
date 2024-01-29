@@ -1,14 +1,19 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Reviews</title>
+  <link rel="stylesheet" href="{% static 'reviews/styles.css' %}">
 </head>
 <body>
-<form>
-  <lable for="username">Your Name</lable>
-  <input type="text" name="username", id = "username">
+<form action="/" method = "POST"> 
+  {%csrf_token%}
+  <div class ="form-control {% if form.username.errors %}errors{% endif %}">
+  {{ form.username.label }}
+  {{ form.username }}
+  {{ form.username.errors }}
   <button type="submit">Submit</button>
 </form>  
 </body>
