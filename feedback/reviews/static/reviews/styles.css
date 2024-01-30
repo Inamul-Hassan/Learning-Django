@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  margin: 0;
+  margin: 10rem;
 }
 
 form {
@@ -21,6 +21,7 @@ button {
   color: white;
   border: 1px solid #1f0050;
   margin-block: 1rem;
+  margin-top: 2rem;
 }
 
 button:hover,
@@ -31,6 +32,7 @@ button:active {
 
 .form-control {
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .form-control input {
@@ -40,6 +42,7 @@ button:active {
   border: 1px solid #ccc;
   display: block;
   width: 10rem;
+  width: 100%;
 }
 
 .form-control input:focus {
@@ -53,6 +56,7 @@ button:active {
   display: block;
   margin-bottom: 0.5rem;
   block-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 .errorlist {
