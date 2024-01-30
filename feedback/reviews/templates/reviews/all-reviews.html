@@ -1,0 +1,18 @@
+{% extends "reviews/base.html" %}
+{% load static %}
+
+{% block title %}
+All Reviews
+{% endblock title %}
+
+{% block content %}
+<ul>
+{% for review in reviews  %}
+<a href = "{% url 'review_detail' id=review.id %}"> <li> Username : {{review.user_name}} --- Rating: {{review.rating}} </li></a>
+{% endfor %}
+
+</ul>  
+
+{% endblock content %}
+
+

@@ -1,9 +1,11 @@
+from typing import Any
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from . import forms
 from .models import ReviewModel
 # Create your views here.
 from django.views import View
+from django.views.generic.base import TemplateView
 
 
 class ReviewView(View):
@@ -20,6 +22,29 @@ class ReviewView(View):
             return HttpResponseRedirect('/thank-you')
         form = forms.ReviewForm()
         return render(request, 'reviews/index.html', {'form': form})
+
+
+class ThankYouView(TemplateView):
+    template_name = 'reviews/thank-you.html'
+
+
+class AllReviewsView(TemplateView):
+    template_name = 'reviews/all-reviews.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['reviews'] = ReviewModel.objects.all()
+        return context
+
+
+class DetailedReviewView(TemplateView):
+    template_name = 'reviews/review_detail.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['review'] = ReviewModel.objects.get(id=self.kwargs['id'])
+        return context
+
 
 # def index(request):
 #     if request.method == "POST":
@@ -39,5 +64,5 @@ class ReviewView(View):
 #     return render(request, 'reviews/index.html', {'form': form})
 
 
-def thank_you(request):
-    return render(request, 'reviews/thank-you.html')
+# def thank_you(request):
+#     return render(request, 'reviews/thank-you.html')
