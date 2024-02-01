@@ -43,7 +43,17 @@ class DetailedReviewView(TemplateView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['review'] = ReviewModel.objects.get(id=self.kwargs['id'])
+        fav_id = self.request.session.get(
+            "favorite_review")
+        context['is_favorite'] = fav_id == str(self.kwargs['id'])
         return context
+
+
+class FavoriteView(View):
+    def post(self, request):
+        review_id = request.POST["id"]
+        request.session["favorite_review"] = review_id
+        return HttpResponseRedirect(f"/review/{review_id}")
 
 
 # def index(request):
